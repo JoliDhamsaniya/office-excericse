@@ -35,9 +35,9 @@ product("5star",124,"object3",5),
 product("park",125,"object3",10),
 product("dariy milk",126,"object3",50)
 ]
-# object1.no_of_products=3
-# object2.no_of_products =3
-# object3.no_of_products=4
+object1.no_of_products=3
+object2.no_of_products =3
+object3.no_of_products=4
 
 
 print(object1,"\n")
