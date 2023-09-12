@@ -53,9 +53,9 @@ sort_products = sorted(products,key=lambda x: x.price, reverse=True)
 for product in sort_products:
     print(product,"\n")
 
-search_code = int(input("enter the code:"))
-found_product = next((product for product in products if product.code == search_code), None)
+serachcode = int(input("enter the code:"))
+found_product = next((product for product in products if product.code == searchcode), None)
 if found_product:
     print(f"\nProduct Found: {found_product}")
 else:
-    print(f"\nProduct with code '{search_code}' not found.")
+    print(f"\nProduct with code '{serachcode}' not found.")
