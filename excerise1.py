@@ -23,7 +23,8 @@ object1 = category("mobile",111)
 object2 = category("car",500)
 object3 = category("chocolates",200)
 
-products= [
+
+products=[
 product("apple",120,"object1",1000000),
 product("redmi 9 prime",121,"object1",20000),
 product("vivo",123,"object1",15000),
@@ -39,23 +40,38 @@ object1.no_of_products=3
 object2.no_of_products =3
 object3.no_of_products=4
 
-
+# print object
+print("category info with its no_of_products")
 print(object1,"\n")
 print(object2,"\n")
 print(object3,"\n")
 
 
-# for product in products:
-#     product.category.no_of_products += 1
 
-print("print products:")
-sort_products = sorted(products,key=lambda x: x.price, reverse=True)
-for product in sort_products:
+# sort price
+
+print("Sort and Print products based on price ( Price High to Low and Low to High) with all details:")
+n = len(products)
+while n > 0:
+    swapped = False
+    for i in range(n - 1):
+        if products[i].price < products[i + 1].price:
+            products[i], products[i + 1] = products[i + 1], products[i]
+            swapped = True
+    if not swapped:
+        break
+    n -= 1
+for product in products:
     print(product,"\n")
 
-serachcode = int(input("enter the code:"))
-found_product = next((product for product in products if product.code == searchcode), None)
+
+#search product using its code
+
+print("Search product using its code:")
+
+serachproduct = int(input("enter the code:"))
+found_product = next((product for product in products if product.code == serachproduct), None)
 if found_product:
-    print(f"\nProduct Found: {found_product}")
+    print(f"\nProduct Found: {serachproduct}")
 else:
-    print(f"\nProduct with code '{serachcode}' not found.")
+    print(f"\nProduct with code '{serachproduct}' not found.")
