@@ -55,6 +55,18 @@ class Customer:
         type = ['company','contact','biling','shipping']
         if cust_type in type:
             return cust_type
+    def customer_info():
+        print()
+        print("customer:")
+        for x in C:
+            print(f"customer name:{x.name}")
+            print(f"customer email:{x.email}")
+            print(f"customer phone no:{x.phone}")
+            print(f"customer city:{x.city}")
+            print(f"customer street:{x.street}")
+            print(f"customer state:{x.state}")
+            print(f"customer country:{x.country}")
+            print()
 
 # Create a new class named "Order" with members "number","date", "company", "billing",
 # "shipping", "total_amount","order_lines".
@@ -85,8 +97,6 @@ class Order:
         print(" order Lines:")
         for  line in (self.order_lines):
             print( f"  Product: {line.product}, Quantity: {line.quantity}, Price: {line.price}, Subtotal: {line.subtotal}")
-
-
     def order_info():
         print()
         for y in order:
@@ -99,6 +109,7 @@ class Order:
             print()
 
 
+
 # create a new class named "OrderLine" with members "order", "product", "quantity", "price",
 #
 class orderline:
@@ -109,6 +120,67 @@ class orderline:
         self.price = price
     # "subtotal" is auto calculated based on quantity and price.
         self.subtotal = quantity * price
+
+    def sort_orders_bydate():
+        print(
+            "______________________________________________________________Display Order and Sort orders based on date________________________________________________________________________________________________________________")
+        n = len(order)
+        while n > 0:
+            swapped = False
+            for i in range(n - 1):
+                if datetime.strptime(order[i].date1, '%d-%m-%Y').date() > datetime.strptime(order[i + 1].date1,
+                                                                                            '%d-%m-%Y').date():
+                    order[i], order[i + 1] = order[i + 1], order[i]
+            swapped = True
+            if not swapped:
+                break
+            n -= 1
+        print()
+        print(f"order Sorted by Date:")
+        for orders in order:
+            print(f"order date{orders.date1}")
+            print(f" order No: {orders.number}")
+            print(f"order company{orders.company}")
+            print(f"order billing{orders.billing}")
+            print(f"order shiping{orders.shipping}")
+
+    # User can filter the current  month orders
+    def sort_orderbymonth():
+        print(
+            "__________________________________________________________User can filter the current month orders___________________________________________________________________________________________________")
+        for i in order:
+            current_month = datetime.now().month
+            if datetime.strptime(i.date1, '%d-%m-%Y').month == current_month:
+                print()
+                print("order based on current month:")
+                print(f"Order Date: {i.date1}")
+                print(
+                    f"Order No: {i.number} \nOrder Company: {i.company} \nOrder Billing company: {i.billing} \nOrder Shipping company: {i.shipping}\n")
+
+    def search_order():
+        print(
+            "__________________________________________________________________Search Orders from its number____________________________________________________________________________________________________")
+        searchorder = input("pelase enter the order number you want to search:")
+        for orderno in order:
+            if orderno.number == searchorder:
+                print(f" product is found")
+                print(
+                    f" order no:{orderno.number} \n order date:{orderno.date1}\n order company{orderno.company}\n order billing company:{orderno.billing} \n order shipping company:{orderno.shipping}")
+            else:
+                print(f" product is not found")
+
+    def display_product():
+        print(
+            "______________________________________________________________List/Display all orders of a specific product___________________________________________________________________")
+        displayproduct = input("please enter product you want to display:")
+        for orderproduct in orderlines:
+            if orderproduct.product == displayproduct:
+                print("product is found")
+                print(
+                    f"product:{orderproduct.product} \nproduct quantity{orderproduct.quantity}\nproduct price:{orderproduct.price}")
+            else:
+                print("product is not found")
+
 
 customer1 = Customer("amul","jolla@gmmail.com","123456789","abc","rajkot","gujrat","india",None,cust_type="company")
 customer2 = Customer("lekme","hmg@gmail.com","9112345678","cde","rajkot","gujarat","india",customer1,cust_type="shipping")
@@ -135,22 +207,6 @@ for i in order:
         if i.company == j.order.company:
             i.add_orderline(j)
 
-
-
-def customer_info():
-    print()
-    print("customer:")
-    for x in C:
-        print(f"customer name:{x.name}")
-        print(f"customer email:{x.email}")
-        print(f"customer phone no:{x.phone}")
-        print(f"customer city:{x.city}")
-        print(f"customer street:{x.street}")
-        print(f"customer state:{x.state}")
-        print(f"customer country:{x.country}")
-        print()
-# customer_info()
-
 # def orderline_info():
 #     for z in orderlines:
 #         print(f"{z.order}")
@@ -161,65 +217,12 @@ def customer_info():
 #         print()
 
  # Display Order and Customer Information Sort orders based on "date".
-def sort_orders_bydate():
-    print("______________________________________________________________Display Order and Sort orders based on date________________________________________________________________________________________________________________")
-    n = len(order)
-    while n > 0:
-        swapped = False
-        for i in range(n-1):
-            if datetime.strptime(order[i].date1, '%d-%m-%Y').date() > datetime.strptime(order[i + 1].date1,'%d-%m-%Y').date():
-                order[i], order[i + 1] = order[i + 1], order[i]
-        swapped = True
-        if not swapped:
-            break
-        n -= 1
-    print()
-    print(f"order Sorted by Date:")
-    for orders in order:
-        print(f"order date{orders.date1}")
-        print(f" order No: {orders.number}")
-        print(f"order company{orders.company}")
-        print(f"order billing{orders.billing}")
-        print(f"order shiping{orders.shipping}")
-
-# User can filter the current  month orders
-def sort_orderbymonth():
-    print("__________________________________________________________User can filter the current month orders___________________________________________________________________________________________________")
-    for i in order:
-        current_month = datetime.now().month
-        if datetime.strptime(i.date1, '%d-%m-%Y').month == current_month:
-            print()
-            print("order based on current month:")
-            print(f"Order Date: {i.date1}")
-            print(
-                f"Order No: {i.number} \nOrder Company: {i.company} \nOrder Billing company: {i.billing} \nOrder Shipping company: {i.shipping}\n")
-
-def search_order():
-    print("__________________________________________________________________Search Orders from its number____________________________________________________________________________________________________")
-    searchorder = input("pelase enter the order number you want to search:")
-    for orderno in order:
-        if orderno.number == searchorder:
-            print(f" product is found")
-            print(f" order no:{orderno.number} \n order date:{orderno.date1}\n order company{orderno.company}\n order billing company:{orderno.billing} \n order shipping company:{orderno.shipping}")
-        else:
-            print(f" product is not found")
-
 # List/Display all orders of a specific product
-def display_product():
-    print("______________________________________________________________List/Display all orders of a specific product___________________________________________________________________")
-    displayproduct = input("please enter product you want to display:")
-    for orderproduct in orderlines:
-        if orderproduct.product == displayproduct:
-            print("product is found")
-            print(f"product:{orderproduct.product} \nproduct quantity{orderproduct.quantity}\nproduct price:{orderproduct.price}")
-        else:
-            print("product is not found")
-
-customer_info()
-sort_orders_bydate()
-sort_orderbymonth()
-search_order()
-display_product()
+Customer.customer_info()
+orderline.sort_orders_bydate()
+orderline.sort_orderbymonth()
+orderline.search_order()
+orderline.display_product()
 for k in order:
     print("________________________________________________________________________________display orderline based in order__________________________________________________________________")
     k.display_order_lines()
