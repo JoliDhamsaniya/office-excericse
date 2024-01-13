@@ -109,7 +109,6 @@ class Order:
             print()
 
 
-
 # create a new class named "OrderLine" with members "order", "product", "quantity", "price",
 #
 class orderline:
@@ -166,8 +165,8 @@ class orderline:
                 print(f" product is found")
                 print(
                     f" order no:{orderno.number} \n order date:{orderno.date1}\n order company{orderno.company}\n order billing company:{orderno.billing} \n order shipping company:{orderno.shipping}")
-            else:
-                print(f" product is not found")
+        else:
+            print(f" product is not found")
 
     def display_product():
         print(
@@ -178,8 +177,8 @@ class orderline:
                 print("product is found")
                 print(
                     f"product:{orderproduct.product} \nproduct quantity{orderproduct.quantity}\nproduct price:{orderproduct.price}")
-            else:
-                print("product is not found")
+        else:
+            print("product is not found")
 
 
 customer1 = Customer("amul","jolla@gmmail.com","123456789","abc","rajkot","gujrat","india",None,cust_type="company")
